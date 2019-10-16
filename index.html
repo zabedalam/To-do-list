@@ -127,15 +127,27 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
                Create a method "getTasksAsArray" which returns (and print to the console) an array containing the tasks as string
             */
       function getTasksAsArray() {
-        var tasksList = document.querySelectorAll("ul li");
-        var arrayList = Array.from(tasksList);
-        var st = arrayList.toString();
-        console.log(st);
+        var tasksList = document.querySelectorAll(" li");
+        // var arrayList = Array.from(tasksList);
+        // var st = arrayList.toString();
+        // console.log(st);
+        var listInfo = [];
+        for (var i = 0; i < tasksList.length; i++) {
+          listInfo.push(tasksList[i].innerText);
+        }
+        return listInfo;
       }
 
       /* EXERCISE 8:
                Create a method "changeTaskBackgroundColor" which takes the color from the color picker ad apply it as background to every list item
             */
+      function changeTaskBackgroundColor() {
+        var targetLi = document.querySelectorAll("#myTaskList li");
+        var color = colorPicker.value;
+        for (var i = 0; i < targetLi.length; i++) {
+          targetLi[i].style.backgroundColor = color;
+        }
+      }
 
       /* EXERCISE 9: 
                Create a method "bubbleSort()" which sort the task list alphabetically using the bubble sort algorithm
@@ -144,6 +156,17 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
                - Break the code into many function for semplicity 
                - Reuse the functions previously created
             */
+      function bubblesort() {
+        var tasks = getTasksAsArray().sort();
+        var myTaskList = document.querySelector("#myTaskList");
+        myTaskList.innerHTML = "";
+
+        for (var i = 0; i < tasks.length; i++) {
+          var newLi = document.createElement("li");
+          newLi.innerText = tasks[i];
+          myTaskList.appendChild(newLi);
+        }
+      }
     </script>
   </body>
 </html>
